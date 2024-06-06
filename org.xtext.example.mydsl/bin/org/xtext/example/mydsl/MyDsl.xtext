@@ -1,0 +1,33 @@
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+	user_story+=User_Story+;
+
+User_Story:
+	title=Title ":" 'Um' nutzen=Nutzen ', möchte ich als' rolle=Rolle ziel_wunsch=Ziel_Wunsch '.';
+
+Title:
+	substantiv=UPPERCASE_WORD infinitiv= LOWERCASE_WORD;
+
+Nutzen:
+	subject=UPPERCASE_WORD verb=LOWERCASE_WORD;
+
+Rolle:
+	substantiv=UPPERCASE_WORD;
+
+Ziel_Wunsch:
+	subject=UPPERCASE_WORD infinitiv=LOWERCASE_WORD;
+
+terminal UPPERCASE_WORD:
+	UPERCASE_LETTER LOWERCASE_LETTER+;
+
+terminal LOWERCASE_WORD:
+	LOWERCASE_LETTER+;
+
+terminal fragment UPERCASE_LETTER:
+	('A'..'Z') | 'Ä' | 'Ü' | 'Ö';
+
+terminal fragment LOWERCASE_LETTER:
+	('a'..'z') | 'ä' | 'ü' | 'ö' | 'ß';
